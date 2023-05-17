@@ -1,5 +1,57 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Hello django !)</h1>
+
+    <div class="container-fluid">
+        <div id="carouselExampleCaptions" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                {% for slide in slider %}
+                    <div class="carousel-item {% if slide.is_first_slide %} active {% endif %}">
+                        <img src="/media/{{ slide.image }}" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>{{ slide.title }}</h5>
+{#                            <p>Some representative placeholder content for the first slide.</p>#}
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <div class="best-product container text-center">
+            <h1>Top Products</h1>
+            <div class="product-list">
+                {% for product in top_products %}
+                    <div class="card" style="width: 18rem;">
+                      <img src="/media/{{ product.main_image.image }}" class="card-img-top" alt="{{ product.title }}">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ product.title }}</h5>
+                        <p class="card-text">{{ product.price }}$</p>
+                        <a href="{% url 'add_to_cart' product_id=product.id %}" class="btn btn-primary">Buy</a>
+                      </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
 {% endblock %}

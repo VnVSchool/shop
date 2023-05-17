@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.carousel-item {
+    height: 700px;
+}
+
+.product-list {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.product-list .card {
+    margin-right: 15px;
+}
