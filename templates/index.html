@@ -39,7 +39,7 @@
         <div class="best-product container text-center">
             <h1>Top Products</h1>
             <div class="product-list">
-                {% for product in top_products %}
+                {% for product in tp %}
                     <div class="card" style="width: 18rem;">
                       <img src="/media/{{ product.main_image.image }}" class="card-img-top" alt="{{ product.title }}">
                       <div class="card-body">
